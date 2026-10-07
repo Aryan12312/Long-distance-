@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Our Little Garden</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Homemade+Apple&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff3f6;--bg2:#ffe6ee;--card:#fffafb;--ink:#5a3a46;--soft:#b97f92;--rose:#f08fab;--fight:#f9c6cf;--happy:#ffe3a8;--paper:#fffaf0;--pen:#6b3b4a;--line:#f3d3dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1d24;--bg2:#35232c;--card:#3b2933;--ink:#f6dfe6;--soft:#d9a0b3;--fight:#7a3d4c;--happy:#6b5a2c;--paper:#4a3a36;--pen:#f6dccf;--line:#5a3f4b}}
+:root[data-theme="dark"]{--bg:#2a1d24;--bg2:#35232c;--card:#3b2933;--ink:#f6dfe6;--soft:#d9a0b3;--fight:#7a3d4c;--happy:#6b5a2c;--paper:#4a3a36;--pen:#f6dccf;--line:#5a3f4b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:linear-gradient(var(--bg),var(--bg2)) fixed;background-color:var(--bg);min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:18px 14px 60px}
+h1{font-family:'Dancing Script',cursive;font-size:2.4rem;margin:6px 0 0;text-align:center;color:var(--rose)}
+.sub{text-align:center;color:var(--soft);margin:0 0 14px}
+.tabs{display:flex;gap:6px;background:var(--card);padding:5px;border-radius:30px;border:1px solid var(--line);margin-bottom:14px}
+.tabs button{flex:1;border:0;background:none;padding:9px 4px;border-radius:24px;font:600 .95rem Nunito,sans-serif;color:var(--soft)}
+.tabs button.on{background:var(--rose);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;margin-bottom:14px;box-shadow:0 6px 20px rgba(240,143,171,.12)}
+h2{font-family:'Dancing Script',cursive;margin:0 0 10px;font-size:1.6rem;color:var(--rose)}
+.sec{display:none}.sec.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats b{display:block;font-size:1.6rem;color:var(--rose)}.stats span{font-size:.75rem;color:var(--soft)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
+.nav button{border:0;background:var(--bg2);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:1.2rem}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.grid .w{font-size:.7rem;color:var(--soft)}
+.d{aspect-ratio:1;border:2px solid transparent;border-radius:12px;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.8rem;padding:0;color:var(--ink);font-family:inherit}
+.d i{font-style:normal;font-size:.8rem;line-height:1}
+.d.f{background:var(--fight)}.d.h{background:var(--happy)}.d.t{border-color:var(--rose)}.d.s{outline:2px solid var(--ink)}
+.leg{font-size:.72rem;color:var(--soft);margin-top:8px;text-align:center}
+.moods{display:flex;gap:6px;margin:8px 0}
+.moods button{flex:1;font-size:1.6rem;border:2px solid var(--line);background:var(--bg);border-radius:14px;padding:6px 0}
+.moods button.on{border-color:var(--rose);background:var(--bg2);transform:scale(1.06)}
+.row{display:flex;gap:8px;margin:8px 0}
+.row button,.btn{flex:1;border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:10px;border-radius:14px;font:600 .9rem Nunito,sans-serif}
+.row button.on{border-color:var(--rose);background:var(--fight)}
+.btn{background:var(--rose);border:0;color:#fff;width:100%;font-size:1rem}
+textarea{width:100%;border:2px solid var(--line);border-radius:14px;padding:10px;background:var(--bg);color:var(--ink);font:1rem Nunito,sans-serif;resize:vertical}
+.other{background:var(--bg);border-radius:14px;padding:10px;margin-top:10px;font-size:.92rem}
+.other small{color:var(--soft)}
+.plant{width:100%;max-height:360px}
+.msg{text-align:center;color:var(--soft);font-size:.92rem}
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:6px 16px 6px 16px;padding:16px;margin-bottom:12px;box-shadow:2px 4px 10px rgba(0,0,0,.07);background-image:repeating-linear-gradient(transparent 0 33px,var(--line) 33px 34px)}
+.paper p{font-family:'Homemade Apple','Segoe Script',cursive;color:var(--pen);line-height:34px;margin:0;white-space:pre-wrap;word-break:break-word;font-size:.88rem}
+.paper small{display:block;margin-top:8px;color:var(--soft);text-align:right}
+.write{font-family:'Homemade Apple','Segoe Script',cursive!important;line-height:30px!important;font-size:.88rem!important;background:var(--paper)!important;color:var(--pen)!important}
+input{flex:1;min-width:0;border:2px solid var(--line);border-radius:14px;padding:10px;background:var(--bg);color:var(--ink);font:1rem Nunito,sans-serif}
+.tabs button{font-size:.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:5px 11px;font:600 .8rem Nunito,sans-serif}
+.chip.on{background:var(--fight);border-color:var(--rose)}
+.bar{margin:8px 0;font-size:.85rem}.bar i{display:block;height:8px;border-radius:6px;background:var(--rose);margin-top:3px}
+#meet{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px}#meet b{font-size:1.1rem;color:var(--rose)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:.85rem;display:none;max-width:90%;text-align:center}
+</style></head><body><main>
+<h1>Our Little Garden</h1><p class="sub">a tiny place for just the two of us 🌸</p>
+<div class="card" id="meet"></div><div class="tabs"><button data-t="days" class="on">📅 Days</button><button data-t="garden">🌱 Garden</button><button data-t="letters">💌 Letters</button><button data-t="jar">🫙 Jar</button></div>
+<div id="status" class="msg">Opening our garden…</div>
+
+<section class="sec on" id="days">
+ <div class="card"><h2>Fight Calculator</h2><div class="stats" id="stats"></div></div>
+ <div class="card"><h2>What we fight about</h2><div id="why"></div></div>
+ <div class="card"><div class="nav"><button id="prev">‹</button><span id="mon"></span><button id="next">›</button></div>
+  <div class="grid" id="cal"></div>
+  <div class="leg">💔 fight day &nbsp; 🌸 both happy &nbsp; · logged</div></div>
+ <div class="card" id="panel"></div>
+</section>
+
+<section class="sec" id="garden"><div class="card"><h2>Our Plant</h2><div id="plant"></div><p class="msg" id="pmsg"></p></div></section>
+
+<section class="sec" id="jar"><div class="card"><h2>Reasons I love you</h2><textarea id="jt" class="write" rows="3" placeholder="I love how you…"></textarea><div style="height:8px"></div><button class="btn" id="jadd">Add to our jar 🫙</button></div><div class="card"><button class="btn" id="pull">Pull a note when you miss me 🎲</button><div id="pulled" style="margin-top:12px"></div></div><div id="jlist"></div></section>
+<section class="sec" id="letters">
+ <div class="card"><h2>Write a love letter</h2><textarea id="lt" class="write" rows="6" placeholder="My love…"></textarea><div style="height:8px"></div><button class="btn" id="send">Seal &amp; send 💌</button></div>
+ <div id="llist"></div>
+</section>
+</main><div id="toast"></div>
+<div id="login" style="position:fixed;inset:0;z-index:9;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px"><div class="card" style="width:100%;max-width:360px;text-align:center"><h2>Our Little Garden 🌸</h2><p class="msg">just for the two of us</p><input id="em" type="email" placeholder="Email" style="width:100%;margin-bottom:8px"><input id="pw" type="password" placeholder="Password" style="width:100%;margin-bottom:8px"><button class="btn" id="go">Enter 💕</button><p class="msg" id="lerr"></p></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const MOODS=[['happy','😊'],['okay','🙂'],['meh','😐'],['sad','😢'],['angry','😠']];
+const EM=Object.fromEntries(MOODS);
+const PRE=["Didn't call","Misunderstanding","Jealousy","Ignored text","Time zones","Stress"];
+let T=[],J=[],meet=null,db,user,me,names={},E=[],L=[],sel=ymd(new Date()),view=new Date(),draft=null,ready=false;
+view.setDate(1);
+function toast(t){const x=$('#toast');x.textContent=t;x.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.display='none',3500)}
+const nm=id=>id===me?'You':(names[id]||'Your love');
+
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+ document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));});
+$('#prev').onclick=()=>{view.setMonth(view.getMonth()-1);render()};
+$('#next').onclick=()=>{view.setMonth(view.getMonth()+1);render()};
+
+function byDay(){const m={};for(const e of E){(m[e.date]=m[e.date]||[]).push(e)}return m}
+function fightDay(l){return l.some(e=>e.fight===true)}
+function bothHappy(l){return new Set(l.filter(e=>e.mood==='happy').map(e=>e.uid)).size>=2}
+
+function stats(m){
+ const days=Object.keys(m).sort(),fights=days.filter(d=>fightDay(m[d])),happy=days.filter(d=>bothHappy(m[d]));
+ const now=new Date(),mk=ymd(now).slice(0,7),mf=fights.filter(d=>d.startsWith(mk)).length;
+ let since='—';
+ if(fights.length){since=Math.max(0,Math.floor((new Date(ymd(now))-new Date(fights[fights.length-1]))/864e5))}
+ else if(days.length)since='🎉';
+ const s=$('#stats');s.textContent='';
+ [[fights.length,'fight days total'],[mf,'fights this month'],[since,'days since last fight'],[happy.length,'both-happy days'],[days.length?Math.round(100*(days.length-fights.length)/days.length)+'%':'—','peaceful days'],[fights.filter(d=>m[d].some(e=>e.sorry)).length,'made-up fights 🩹']]
+ .forEach(([n,l])=>{const d=el('div');d.append(el('b',0,n),el('span',0,l));s.append(d)});
+ s.style.gridTemplateColumns='repeat(3,1fr)';
+}
+
+function cal(m){
+ $('#mon').textContent=view.toLocaleString('en',{month:'long',year:'numeric'});
+ const g=$('#cal');g.textContent='';
+ 'SMTWTFS'.split('').forEach(c=>g.append(el('div','w',c)));
+ const first=view.getDay(),n=new Date(view.getFullYear(),view.getMonth()+1,0).getDate(),td=ymd(new Date());
+ for(let i=0;i<first;i++)g.append(el('div'));
+ for(let d=1;d<=n;d++){
+  const k=ymd(new Date(view.getFullYear(),view.getMonth(),d)),l=m[k]||[];
+  const b=el('button','d');b.append(el('span',0,d));
+  const f=fightDay(l),h=bothHappy(l);
+  if(f)b.classList.add('f');else if(h)b.classList.add('h');
+  if(k===td)b.classList.add('t');if(k===sel)b.classList.add('s');
+  b.append(el('i',0,f?(l.some(e=>e.sorry)?'🩹':'💔'):h?'🌸':l.length?'·':''));
+  b.onclick=()=>{sel=k;draft=null;render()};g.append(b);
+ }
+}
+
+async function save(patch){
+ const mine=E.find(e=>e.date===sel&&e.uid===me)||{};
+ const o={date:sel,uid:me,mood:mine.mood||null,fight:mine.fight===undefined?null:mine.fight,reason:mine.reason||'',tags:mine.tags||[],sorry:!!mine.sorry,...patch};
+ try{await db.doc('entries/'+sel+'_'+me).set(o)}catch(e){toast('Could not save. Check your connection and try again.')}
+}
+
+function panel(m){
+ const p=$('#panel');p.textContent='';
+ const l=m[sel]||[],mine=l.find(e=>e.uid===me)||{};
+ const pretty=new Date(sel+'T00:00').toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});
+ p.append(el('h2',0,pretty),el('div','msg','How are you feeling today?'));
+ const mo=el('div','moods');
+ MOODS.forEach(([k,e])=>{const b=el('button',mine.mood===k?'on':'',e);b.title=k;b.onclick=()=>save({mood:k});mo.append(b)});
+ p.append(mo);
+ const r=el('div','row');
+ [[true,'We fought 💔'],[false,'No fight 🕊️']].forEach(([v,t])=>{const b=el('button',mine.fight===v?'on':'',t);b.onclick=()=>save({fight:v});r.append(b)});
+ p.append(r);
+ if(fightDay(l)){const sb=el('button','btn',mine.sorry?'🩹 We made up (tap to undo)':'🩹 I said sorry / we made up');sb.style.cssText='margin-bottom:8px;background:var(--happy);color:var(--ink)';sb.onclick=()=>save({sorry:!mine.sorry});p.append(sb)}
+ p.append(el('div','msg','What was it about? Tap any'));
+ const ch=el('div','chips'),all=[...new Set([...PRE,...T.map(t=>t.name)])];
+ all.forEach(t=>{const on=(mine.tags||[]).includes(t),c=el('button','chip'+(on?' on':''),t);c.onclick=()=>save({tags:on?mine.tags.filter(x=>x!==t):[...(mine.tags||[]),t]});ch.append(c)});
+ p.append(ch);
+ const ar=el('div','row'),ti=el('input');ti.placeholder='Add our own reason…';ti.maxLength=40;
+ const ab=el('button',0,'Add');ab.style.flex='0 0 70px';
+ ab.onclick=async()=>{const v=ti.value.trim();if(!v||all.includes(v))return;try{await db.collection('tags').add({name:v});ti.value=''}catch(e){toast('Could not add')}};
+ ar.append(ti,ab);p.append(ar);
+ const ta=el('textarea');ta.rows=3;ta.placeholder='What happened? Write your side gently…';ta.value=draft!==null?draft:(mine.reason||'');
+ ta.oninput=()=>draft=ta.value;p.append(ta);
+ const sv=el('button','btn','Save my note');sv.style.marginTop='8px';sv.onclick=async()=>{await save({reason:ta.value.slice(0,1500)});draft=null;toast('Saved 🌷')};p.append(sv);
+ l.filter(e=>e.uid!==me).forEach(e=>{
+  const o=el('div','other');
+  o.append(el('b',0,nm(e.uid)+' feels '+(EM[e.mood]||'…')+(e.fight===true?'  💔 fight':e.fight===false?'  🕊️ no fight':'')));
+  if(e.reason){o.append(el('br'),el('small',0,e.reason))}
+  p.append(o);
+ });
+}
+
+function flower(x,y,c,r){
+ let s='';for(let a=0;a<5;a++){const t=a*72*Math.PI/180;s+=`<circle cx="${(x+Math.cos(t)*r*.9).toFixed(1)}" cy="${(y+Math.sin(t)*r*.9).toFixed(1)}" r="${r*.7}" fill="${c}"/>`}
+ return s+`<circle cx="${x}" cy="${y}" r="${r*.45}" fill="#ffd54f"/>`;
+}
+function plant(n){
+ const m=Math.min(n,60),H=34+Math.min(n,100)*1.9,x=110,b=262,top=b-H,cols=['#f9a8c0','#ffc2d1','#fbb6ce','#ffc7a8','#e3b5f0','#fff0a8'];
+ let s=`<path d="M${x} ${b}C${x-12} ${b-H*.4} ${x+12} ${b-H*.7} ${x} ${top}" stroke="#7bbf94" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+ for(let i=0;i<Math.floor(H/22);i++){const y=b-14-i*22,d=i%2?1:-1;s+=`<ellipse cx="${x+d*14}" cy="${y}" rx="13" ry="6" fill="#8fd0a6" transform="rotate(${-d*25} ${x+d*14} ${y})"/>`}
+ for(let i=0;i<m;i++){const t=(i+1)/(m+1),d=i%2?1:-1;s+=flower(x+d*(12+(i*7)%16),b-H*t-4,cols[i%6],6)}
+ if(!m)s+=`<circle cx="${x}" cy="${top}" r="6" fill="#f7c9d6"/>`;
+ s+='<path d="M72 262h76l-9 34h-58z" fill="#e8a78f"/><rect x="68" y="256" width="84" height="12" rx="6" fill="#f0b9a3"/>';
+ $('#plant').innerHTML=`<svg class="plant" viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">${s}</svg>`;
+}
+
+function why(m){
+ const w=$('#why');w.textContent='';const c={},cm={},mk=ymd(new Date()).slice(0,7);
+ for(const d in m){if(!fightDay(m[d]))continue;new Set(m[d].flatMap(e=>e.tags||[])).forEach(t=>{c[t]=(c[t]||0)+1;if(d.startsWith(mk))cm[t]=(cm[t]||0)+1})}
+ const r=Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,6);
+ if(!r.length){w.append(el('p','msg','Tag your fight days and the pattern will show up here.'));return}
+ r.forEach(([t,n])=>{const o=el('div','bar');o.append(el('span',0,t+' · '+n+(cm[t]?' ('+cm[t]+' this month)':'')));const f=el('i');f.style.width=(100*n/r[0][1])+'%';o.append(f);w.append(o)});
+}
+function meetUI(){
+ const b=$('#meet');b.textContent='';const d=meet&&meet.date;
+ if(d){const n=Math.round((new Date(d+'T00:00')-new Date(ymd(new Date())+'T00:00'))/864e5);
+  b.append(n>=0?el('b',0,n===0?'Today we meet! 🥹💕':n+' day'+(n>1?'s':'')+' until we meet 💕'):el('span','msg','Pick our next meeting date 💕'))}
+ else b.append(el('span','msg','When do we meet next?'));
+ const i=el('input');i.type='date';i.value=d||'';i.style.flex='none';
+ i.onchange=async()=>{try{await db.doc('settings/meet').set({date:i.value})}catch(e){toast('Could not save')}};
+ b.append(i);
+}
+function note(x){const c=el('div','paper');c.append(el('p',0,x.text),el('small',0,'— '+nm(x.from)));return c}
+function jar(){const b=$('#jlist');b.textContent='';
+ if(!J.length)b.append(el('p','msg','The jar is empty. Add the first reason 💕'));
+ J.forEach(x=>b.append(note(x)))}
+$('#pull').onclick=()=>{const o=$('#pulled');o.textContent='';if(!J.length)return toast('Add a note first 💕');o.append(note(J[Math.floor(Math.random()*J.length)]))};
+$('#jadd').onclick=async()=>{const t=$('#jt').value.trim();if(!t||!db)return;try{await db.collection('jar').add({from:me,text:t.slice(0,300),at:Date.now()});$('#jt').value='';toast('Added to our jar 🫙')}catch(e){toast('Could not add. Check your connection and try again.')}};
+function letters(){
+ const b=$('#llist');b.textContent='';
+ if(!L.length)b.append(el('p','msg','No letters yet. Be the first to write one 💕'));
+ L.forEach(x=>{
+  const c=el('div','paper');c.append(el('p',0,x.text),el('small',0,'— '+nm(x.from)+', '+new Date(x.at).toLocaleDateString('en',{month:'short',day:'numeric',year:'numeric'})));b.append(c);
+ });
+}
+
+function render(){
+ if(!ready)return;
+ const m=byDay();stats(m);cal(m);panel(m);
+ const n=Object.keys(m).filter(d=>bothHappy(m[d])).length;
+ plant(n);
+ $('#pmsg').textContent=n?`${n} happy day${n>1?'s':''} together — ${n} flower${n>1?'s':''} blooming 🌸. Each day you both press 😊, a new flower blooms.`:'A tiny sprout is waiting. When you both press 😊 on the same day, the first flower will bloom 🌱';
+ letters();why(m);jar();meetUI();
+}
+
+async function loadNames(){
+ const ids=[...new Set([...E.map(e=>e.uid),...L.map(x=>x.from),...J.map(x=>x.from)].filter(Boolean))];
+ try{const ps=await user.profiles(ids);ids.forEach(i=>{names[i]=(ps[i]&&ps[i].name)||''});render()}catch(e){}
+}
+
+$('#send').onclick=async()=>{
+ const t=$('#lt').value.trim();if(!t||!db)return;
+ try{await db.collection('letters').add({from:me,text:t.slice(0,4000),at:Date.now()});$('#lt').value='';toast('Your letter is on its way 💌')}
+ catch(e){toast('Could not send. Check your connection and try again.')}
+};
+
+(async()=>{
+ await new Promise(x=>window.claude?x():addEventListener('gready',x));
+ try{
+  const c=window.claude;db=c&&await c.use('db');user=c&&await c.use('user');
+  if(!db||!user){$('#status').textContent='Please open this page signed in to Claude to use the garden 🌷';return}
+  me=await user.id();
+ }catch(e){$('#status').textContent='Could not open the garden. Please reload.';return}
+ $('#status').style.display='none';ready=true;render();
+ db.collection('entries').onSnapshot(s=>{E=s.docs.map(d=>d.data());render();loadNames()},()=>toast('Lost connection to the garden'));
+ db.collection('letters').orderBy('at','desc').limit(200).onSnapshot(s=>{L=s.docs.map(d=>d.data());render();loadNames()},()=>{});
+ db.collection('tags').onSnapshot(s=>{T=s.docs.map(d=>d.data());render()},()=>{});
+ db.collection('jar').orderBy('at','desc').limit(300).onSnapshot(s=>{J=s.docs.map(d=>d.data());render();loadNames()},()=>{});
+ db.doc('settings/meet').onSnapshot(s=>{meet=s.exists?s.data():null;render()},()=>{});
+})();
+</script>
+<script type="module">
+/* 1) PASTE YOUR FIREBASE CONFIG HERE (see the setup steps) */
+const firebaseConfig={apiKey:"PASTE_HERE",authDomain:"PASTE_HERE",projectId:"PASTE_HERE",storageBucket:"PASTE_HERE",messagingSenderId:"PASTE_HERE",appId:"PASTE_HERE"};
+/* ---- nothing below needs editing ---- */
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,collection,setDoc,getDoc,addDoc,onSnapshot,query,orderBy,limit} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const app=initializeApp(firebaseConfig),auth=getAuth(app),fdb=getFirestore(app),q$=s=>document.querySelector(s);
+q$('#go').onclick=async()=>{q$('#lerr').textContent='';try{await signInWithEmailAndPassword(auth,q$('#em').value.trim(),q$('#pw').value)}catch(e){q$('#lerr').textContent='Wrong email or password 🥺'}};
+const wrap=q=>({orderBy:(f,d)=>wrap(query(q,orderBy(f,d||'asc'))),limit:n=>wrap(query(q,limit(n))),onSnapshot:(n,e)=>onSnapshot(q,n,e)});
+const DB={
+ doc:p=>{const r=doc(fdb,p);return{set:d=>setDoc(r,d),onSnapshot:(n,e)=>onSnapshot(r,s=>n({exists:s.exists(),data:()=>s.data()}),e)}},
+ collection:p=>{const c=collection(fdb,p),w=wrap(c);w.add=d=>addDoc(c,d);return w}
+};
+onAuthStateChanged(auth,async u=>{
+ if(!u){q$('#login').style.display='flex';return}
+ q$('#login').style.display='none';
+ const pr=doc(fdb,'profiles/'+u.uid);
+ if(!(await getDoc(pr)).exists()){const n=(prompt('What should we call you?')||'').trim().slice(0,30);await setDoc(pr,{name:n||'Me'})}
+ const USER={id:async()=>u.uid,profiles:async ids=>{const o={};await Promise.all(ids.map(async i=>{const s=await getDoc(doc(fdb,'profiles/'+i));o[i]={name:s.exists()?s.data().name:''}}));return o}};
+ window.claude={use:async n=>n==='db'?DB:n==='user'?USER:null};
+ window.dispatchEvent(new Event('gready'));
+});
+</script>
+</body></html>
